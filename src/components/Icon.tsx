@@ -7,9 +7,11 @@ type IconName =
   | 'check'
   | 'heart'
   | 'menu'
+  | 'minus'
   | 'plus'
   | 'search'
   | 'close'
+  | 'trash'
 
 type IconProps = {
   name: IconName
@@ -36,6 +38,7 @@ const paths: Record<IconName, ReactNode> = {
       <path d="M4 17h16" />
     </>
   ),
+  minus: <path d="M5 12h14" />,
   plus: (
     <>
       <path d="M12 5v14" />
@@ -52,6 +55,14 @@ const paths: Record<IconName, ReactNode> = {
     <>
       <path d="m18 6-12 12" />
       <path d="m6 6 12 12" />
+    </>
+  ),
+  trash: (
+    <>
+      <path d="M3 6h18" />
+      <path d="M8 6V4h8v2" />
+      <path d="m19 6-1 14H6L5 6" />
+      <path d="M10 11v5m4-5v5" />
     </>
   ),
 }

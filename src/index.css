@@ -1,20 +1,20 @@
 :root {
-  font-family: 'DM Sans', 'Avenir Next', Avenir, sans-serif;
-  color: #252b25;
-  background: #f8f7f1;
+  font-family: 'Manrope', sans-serif;
+  color: #171717;
+  background: #f5f3ee;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --paper: #fbfaf5;
-  --ink: #252b25;
-  --green: #405944;
-  --coral: #c76f53;
-  --yellow: #e4c96e;
-  --muted: #73776d;
-  --line: #e8e7df;
-  --serif: 'Iowan Old Style', 'Baskerville', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+  --maison-paper: #f5f3ee;
+  --maison-white: #fbfaf7;
+  --maison-ink: #171717;
+  --maison-muted: #77736d;
+  --maison-taupe: #a28c72;
+  --maison-line: #dcd8d0;
+  --maison-display: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+  --maison-body: 'Manrope', 'Avenir Next', Avenir, sans-serif;
 
   font-optical-sizing: auto;
   font-weight: 400;
@@ -27,19 +27,27 @@
 html {
   min-width: 320px;
   scroll-behavior: smooth;
-  scroll-padding-top: 120px;
+  scroll-padding-top: 84px;
 }
 
 body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  background: var(--paper);
+  background: var(--maison-paper);
+  font-family: var(--maison-body);
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
+}
+
+button,
+a,
+select {
+  -webkit-tap-highlight-color: transparent;
 }
 
 button {
@@ -48,14 +56,15 @@ button {
 
 button:focus-visible,
 a:focus-visible,
-input:focus-visible {
-  outline: 2px solid #718a69;
-  outline-offset: 3px;
+input:focus-visible,
+select:focus-visible {
+  outline: 1px solid var(--maison-taupe);
+  outline-offset: 4px;
 }
 
 ::selection {
-  color: #fff;
-  background: #405944;
+  color: var(--maison-white);
+  background: var(--maison-taupe);
 }
 
 @media (prefers-reduced-motion: reduce) {

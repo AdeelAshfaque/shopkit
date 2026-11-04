@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Icon from './Icon'
 
 type ShopNavbarProps = {
@@ -19,6 +19,28 @@ function ShopNavbar({
   const [menuOpen, setMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const searchInput = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    function handleSearchShortcut(event: KeyboardEvent) {
+      const target = event.target
+      const isTyping =
+        target instanceof HTMLInputElement ||
+        target instanceof HTMLTextAreaElement ||
+        (target instanceof HTMLElement && target.isContentEditable)
+
+      if (event.key === '/' && !isTyping && !event.metaKey && !event.ctrlKey) {
+        event.preventDefault()
+        setSearchOpen(true)
+        searchInput.current?.focus()
+      } else if (event.key === 'Escape' && searchOpen) {
+        setSearchOpen(false)
+        searchInput.current?.blur()
+      }
+    }
+
+    window.addEventListener('keydown', handleSearchShortcut)
+    return () => window.removeEventListener('keydown', handleSearchShortcut)
+  }, [searchOpen])
 
   function toggleSearch() {
     const nextOpen = !searchOpen
@@ -93,19 +115,6 @@ function ShopNavbar({
             <span>Bag</span>
             <span className="bag-count" aria-live="polite">{cartCount}</span>
           </button>
-          {cartOpen && (
-            <div aria-label="Shopping bag" className="bag-popover" role="region">
-              <span className="eyebrow">YOUR LITTLE BAG</span>
-              <p>
-                {cartCount === 0
-                  ? 'A little room for something lovely.'
-                  : `You have ${cartCount} ${cartCount === 1 ? 'find' : 'finds'} in your bag.`}
-              </p>
-              <a href="#shop" onClick={onCartClick}>
-                Keep finding good things <Icon name="arrow-right" size={15} />
-              </a>
-            </div>
-          )}
           <button
             aria-expanded={menuOpen}
             aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}

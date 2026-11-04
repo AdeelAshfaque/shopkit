@@ -21,13 +21,13 @@ const promises = [
 function Features() {
   return (
     <section className="promise-section" id="why-shopkit">
-      <div className="promise-heading">
+      <div className="promise-heading" data-reveal>
         <span className="eyebrow">THE SHOPKIT KIND OF THING</span>
         <h2>Good stuff. <em>Good people.</em></h2>
       </div>
       <div className="promise-grid">
         {promises.map((promise, index) => (
-          <article className="promise-card" key={promise.title}>
+          <article className="promise-card" data-reveal key={promise.title}>
             <span className={`promise-icon promise-icon-${index + 1}`}>
               <Icon name={promise.icon} size={21} />
             </span>
